@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 문서가 로드된 후 실행
+        document.addEventListener("DOMContentLoaded", function () {
+            // h1 요소 생성
+            const h1 = document.createElement("h1");
+            h1.textContent = "황보정 페이지";
+
+            // body에 추가
+            document.body.appendChild(h1);
+        });
+    </script>
+</body>
+</html>
