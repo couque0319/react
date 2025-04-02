@@ -42,7 +42,134 @@
 3. **컴포넌트는 함수처럼 작동**, HTML 요소 반환
 4. 여러 개의 Element를 반환하여 UI 구성
 
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/7fc06fe0-2a37-4d42-87f2-f96cfea7b143" width="400">
+</p> 
+
 ---
+
+## 🧪 댓글 컴포넌트 만들기 (실습 예시)
+
+### 📁 Comment.jsx
+```jsx
+import React from "react";
+
+const styles = {
+  wrapper: {
+    margin: 8,
+    padding: 8,
+    display: "flex",
+    flexDirection: "row",
+    border: "1px solid grey",
+    borderRadius: 16,
+  },
+  imageContainer: {},
+  image: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  contentContainer: {
+    marginLeft: 8,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  nameText: {
+    color: "black",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  commentText: {
+    color: "black",
+    fontSize: 16,
+  },
+};
+
+function Comment(props) {
+  return (
+    <div style={styles.wrapper}>
+      <div style={styles.imageContainer}>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+          style={styles.image}
+          alt="pic1"
+        />
+      </div>
+      <div style={styles.contentContainer}>
+        <span style={styles.nameText}>{props.name}</span>
+        <span style={styles.commentText}>{props.comment}</span>
+      </div>
+    </div>
+  );
+}
+
+export default Comment;
+```
+
+### 📁 CommentList.jsx
+```jsx
+import React from "react";
+import Comment from "./Comment";
+
+const comments = [
+  {
+    name: "이인제",
+    comment: "안녕하세요, 소플입니다.",
+  },
+  {
+    name: "유재석",
+    comment: "리액트 재미있어요~!",
+  },
+  {
+    name: "강민경",
+    comment: "저도 리액트 배워보고 싶어요!!",
+  },
+];
+
+function CommentList(props) {
+  return (
+    <div>
+      {comments.map((comment, index) => (
+        <Comment key={index} name={comment.name} comment={comment.comment} />
+      ))}
+    </div>
+  );
+}
+
+export default CommentList;
+```
+
+### 📁 App.js
+```jsx
+import React from "react";
+import CommentList from "./chapter_05/CommentList";
+
+function App() {
+  return <CommentList />;
+}
+
+export default App;
+```
+
+### 📁 index.js
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+const root = document.getElementById("root");
+ReactDOM.createRoot(root).render(<App />);
+```
+
+#### 실행 결과
+
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/448e57f1-a21f-4857-bb17-45594539d491" width="400">
+</p> 
+
+---
+
 
 ## 🔗 Component vs Element
 
@@ -65,10 +192,14 @@
 - **여러 컴포넌트를 조합**하여 복잡한 UI 구성
 - 마치 레고 블록을 조립하듯 사용
 
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/b114e4fb-ced7-466f-8eec-05650bb4e260" width="600">
+</p>
+
+
 ### ✂️ Component Extraction
 - 기존 컴포넌트에서 UI/로직을 분리해 **새 컴포넌트 생성**
 - 코드 **재사용성 향상**, **유지보수 효율 증가**
-
 ---
 
 ## 💾 State (상태)
@@ -233,6 +364,10 @@
   1. **Mount (생성)**: DOM에 처음 렌더링
   2. **Update (업데이트)**: props/state 변경 시 재렌더링
   3. **Unmount (제거)**: DOM에서 제거될 때
+ 
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/809b0d3f-d0ff-4704-b522-63d1fc5c9f43" width="600">
+</p>
 
 - 클래스형: 생명주기 메서드(`componentDidMount`, `componentWillUnmount` 등)
 - 함수형: `useEffect()`로 동일한 기능 구현 가능
